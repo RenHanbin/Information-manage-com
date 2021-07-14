@@ -20,24 +20,24 @@ const Show: React.FC<ShowProps> = props => {
     <>
       <Table dataSource={projectDataSource} size="middle">
         <Column title="序号" dataIndex="id" key="id" />
-        <Column title="项目名称" dataIndex="name" key="name" />
         <Column
-          title="需求学生(个)"
-          dataIndex="needStudent"
-          key="needStudent"
+          title="项目名称"
+          dataIndex="name"
+          key="name"
+          render={(_text: string, record: PT.Project) => (
+            <a onClick={setTrue}>{record?.name}</a>
+          )}
         />
-        <Column title="学科专业" dataIndex="major" key="major" />
         <Column title="发布组织" dataIndex="group" key="group" />
         <Column title="项目状态" dataIndex="state" key="state" />
         <Column
           title="操作"
           dataIndex="operation"
           key="operation"
+          fixed="right"
           render={() => (
             <Space size="middle">
-              <Button type="primary" onClick={setTrue}>
-                查看
-              </Button>
+              <a onClick={setTrue}>修改</a>
             </Space>
           )}
         />
@@ -47,7 +47,7 @@ const Show: React.FC<ShowProps> = props => {
         visible={isShow}
         onCancel={setFalse}
         style={{ top: '15px' }}
-        width={'60vw'}
+        width={'70vw'}
         footer={
           <Button key="back" onClick={setFalse}>
             返回

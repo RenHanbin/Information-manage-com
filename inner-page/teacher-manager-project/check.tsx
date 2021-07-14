@@ -1,9 +1,19 @@
 /**
  * 具体的项目信息弹窗
  */
-import { Form, Input, Select, DatePicker, Radio, Card, Space } from 'antd';
+import {
+  Form,
+  Input,
+  Select,
+  DatePicker,
+  Radio,
+  Card,
+  Space,
+  Divider,
+} from 'antd';
+import TextArea from 'antd/lib/input/TextArea';
 
-const Detail = () => {
+const Check = () => {
   const tailLayout = {
     wrapperCol: { offset: 1 },
   };
@@ -90,9 +100,19 @@ const Detail = () => {
             <Input.TextArea placeholder="项目简介" disabled={true} />
           </Form.Item>
         </Form>
+        <Divider orientation="left">项目审核</Divider>
+        <Form.Item name="level">
+          <Radio.Group>
+            <Radio value={1}>通过</Radio>
+            <Radio value={2}>不通过</Radio>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item label="审核意见" name="textAdvice">
+          <TextArea rows={1} cols={8} />
+        </Form.Item>
       </Card>
     </>
   );
 };
 
-export default Detail;
+export default Check;

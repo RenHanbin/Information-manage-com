@@ -10,7 +10,7 @@ const { data }: { data: PT.User[] } = Mock.mock({
       'index|+1': 1,
       'ID|+1': ['12345', '23456', '45678'],
       name: '@cname()',
-      role: '高校导师',
+      role: '研究生',
       'organ|+1': ['广东工业大学', '广东财经大学'],
       teacher: '@cname()',
       time: '@date("yyyy-MM-dd")',

@@ -21,11 +21,10 @@ const { dataSource }: { dataSource: PT.Project[] } = Mock.mock({
         '广东施泰宝医疗科技有限公司',
       ],
       'invest|10-100': 1,
-      'needStudent|1-20': 1,
       createTime: '@date("yyyy")',
       startTime: '@date("yyyy-MM-dd")',
       endTime: '@date("yyyy-MM-dd")',
-      state: '指标招生',
+      'state|+1': ['未审核', '已通过', '未通过'],
     },
   ],
 });

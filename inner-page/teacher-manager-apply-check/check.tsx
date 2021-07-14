@@ -1,16 +1,57 @@
 /**
  * 具体的项目信息弹窗
  */
-import { Form, Input, DatePicker, Radio, Card, Row, Col, Select } from 'antd';
+import {
+  Form,
+  Input,
+  Select,
+  DatePicker,
+  Radio,
+  Card,
+  Table,
+  Space,
+  Button,
+  Modal,
+  Row,
+  Col,
+} from 'antd';
+import Mock from 'mockjs';
 import dayjs from 'dayjs';
+import { useBoolean } from 'ahooks';
 
+import Verify from 'inner-page/teacher-manager-apply-check/verify';
+
+const { Column, ColumnGroup } = Table;
+
+const { teacherData }: { teacherData: PT.SchoolTeacher[] } = Mock.mock({
+  'teacherData|2': [
+    {
+      'key|+1': 1,
+      'id|+1': 1,
+      'name|+1': ['郑威', '张永泉'],
+      'schoolName|+1': ['哈尔滨理工大学'],
+      'tel|+1': ['13945072055', '18846077959'],
+      'applyDoctorNums|0-5': 1,
+      'applyPostgraduateNums|0-5': 1,
+      'checkDoctorNums|0-5': 1,
+      'checkPostgraduateNums|0-5': 1,
+      'FirstDoctorNums|0-5': 1,
+      'FirstPostgraduateNums|0-5': 1,
+      'secondDoctorNums|0-5': 1,
+      'secondPostgraduateNums|0-5': 1,
+      description: '',
+      state: '未审批',
+    },
+  ],
+});
 const options = [
   { value: '计算机' },
   { value: '化学' },
   { value: '数学' },
   { value: '生物制药' },
 ];
-const Detail = () => {
+const Check = () => {
+  const [isShow, { setTrue, setFalse }] = useBoolean(false);
   const tailLayout = {
     wrapperCol: { offset: 1 },
   };
@@ -87,8 +128,60 @@ const Detail = () => {
           </Form.Item>
         </Form>
       </Card>
+      <Card title="指标审核">
+        <Table dataSource={teacherData} size="middle">
+          <Column title="序号" dataIndex="id" key="id" />
+          <Column title="导师名称" dataIndex="name" key="name" />
+          <Column title="所属高校" dataIndex="schoolName" key="schoolName" />
+          <Column title="联系电话" dataIndex="tel" key="tel" />
+          <ColumnGroup title="高校导师申请对接数">
+            <Column
+              title="博士生"
+              dataIndex="applyDoctorNums"
+              key="applyDoctorNums"
+            />
+            <Column
+              title="硕士生"
+              dataIndex="applyPostgraduateNums"
+              key="applyPostgraduateNums"
+            />
+          </ColumnGroup>
+          <Column title="备注" dataIndex="description" key="description" />
+          <Column title="高校审批" dataIndex="state" key="state" />
+          <Column
+            title="操作"
+            dataIndex="operation"
+            key="operation"
+            render={() => (
+              <Space size="middle">
+                <Button type="primary" onClick={setTrue}>
+                  审核
+                </Button>
+              </Space>
+            )}
+          />
+        </Table>
+        <Modal
+          title="高校导师指标资格审核"
+          visible={isShow}
+          onCancel={setFalse}
+          width={'60vw'}
+          footer={
+            <div>
+              <Button type="primary" onClick={setFalse}>
+                提交
+              </Button>
+              <Button key="back" onClick={setFalse}>
+                取消
+              </Button>
+            </div>
+          }
+        >
+          <Verify />
+        </Modal>
+      </Card>
     </>
   );
 };
 
-export default Detail;
+export default Check;

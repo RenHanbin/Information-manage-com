@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import Mock from 'mockjs';
 
+import Config from './config';
 import Show from 'inner-page/teacher-manager-apply-check/show';
 
 const { dataSource }: { dataSource: PT.Project[] } = Mock.mock({
@@ -26,7 +27,7 @@ const { dataSource }: { dataSource: PT.Project[] } = Mock.mock({
       createTime: '@date("yyyy")',
       startTime: '@date("yyyy-MM-dd")',
       endTime: '@date("yyyy-MM-dd")',
-      state: '指标招生',
+      'state|+1': ['未审核', '已通过', '未通过'],
     },
   ],
 });
@@ -34,6 +35,7 @@ const Compose = () => {
   const [projectDataSource] = useState<PT.Project[]>(dataSource);
   return (
     <>
+      <Config />
       <Show projectDataSource={projectDataSource} />
     </>
   );

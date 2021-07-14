@@ -4,61 +4,25 @@
 import {
   Form,
   Input,
+  Select,
   DatePicker,
   Radio,
   Card,
-  Table,
   Space,
   Button,
+  Table,
   Modal,
   Row,
   Col,
-  Select,
 } from 'antd';
+import dayjs from 'dayjs';
 import { PlusOutlined } from '@ant-design/icons';
 import Mock from 'mockjs';
 import { useBoolean } from 'ahooks';
-import { ColumnsType } from 'antd/es/table';
-import dayjs from 'dayjs';
 import { Key } from 'react';
 
 const { Column } = Table;
 const { Search } = Input;
-
-const DEFAULT_COLUMNS: ColumnsType<PT.SchoolTeacher> = [
-  {
-    title: '高校导师',
-    dataIndex: 'id',
-    key: 'id',
-  },
-  {
-    title: '姓名',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: '学校',
-    dataIndex: 'school',
-    key: 'school',
-  },
-  {
-    title: '简介',
-    dataIndex: 'description',
-    key: 'description',
-  },
-];
-
-const { teacherData }: { teacherData: PT.SchoolTeacher[] } = Mock.mock({
-  'teacherData|2': [
-    {
-      'key|+1': 1,
-      'id|+1': 1,
-      'name|+1': '@cname()',
-      'school|+1': ['哈尔滨理工大学', '黑龙江大学'],
-      introduce: '',
-    },
-  ],
-});
 const options = [
   { value: '计算机' },
   { value: '化学' },
@@ -100,7 +64,7 @@ const { studentData }: { studentData: PT.Student[] } = Mock.mock({
     },
   ],
 });
-const Detail = () => {
+const Check = () => {
   const [isShow, { setTrue, setFalse }] = useBoolean(false);
   const rowSelection = {
     onchange: (selectedRowKeys: Key[]) => {
@@ -182,13 +146,6 @@ const Detail = () => {
             />
           </Form.Item>
         </Form>
-      </Card>
-      <Card title="教师信息">
-        <Table
-          columns={DEFAULT_COLUMNS}
-          dataSource={teacherData}
-          size="middle"
-        ></Table>
       </Card>
       <Card title="学生管理">
         <Button onClick={setTrue} icon={<PlusOutlined />}>
@@ -291,4 +248,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default Check;

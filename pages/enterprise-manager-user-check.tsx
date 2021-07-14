@@ -3,7 +3,7 @@ import Compose from 'inner-page/enterprise-manager-user-check/compose';
 
 /**
  * 角色：企业管理员
- * 信息审批管理->用户账号审批
+ * 项目成员管理->学生信息管理
  */
 const UserCheck = () => {
   return (

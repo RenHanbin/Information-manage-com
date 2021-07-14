@@ -1,4 +1,4 @@
-import { Input, Modal, Select, Space } from 'antd';
+import { Input, Select, Space } from 'antd';
 
 const { Search } = Input;
 const { Option } = Select;
@@ -26,9 +26,9 @@ const Config = () => {
             onChange={() => {}}
           >
             <Option value="全部">全部</Option>
-            <Option value="未申请">未申请</Option>
-            <Option value="申请中">已通过</Option>
-            <Option value="申请通过">已驳回</Option>
+            <Option value="未审核">未审核</Option>
+            <Option value="已通过">已通过</Option>
+            <Option value="未通过">未通过</Option>
           </Select>
           <Search placeholder="搜索" style={{ width: 200 }} />
         </Space>

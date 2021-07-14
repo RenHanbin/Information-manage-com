@@ -1,66 +1,9 @@
 /**
  * 具体的项目信息弹窗
  */
-import { Key } from 'react';
-import {
-  Form,
-  Input,
-  Select,
-  DatePicker,
-  Radio,
-  Card,
-  Table,
-  Space,
-} from 'antd';
-import Mock from 'mockjs';
+import { Form, Input, Select, DatePicker, Radio, Card, Space } from 'antd';
 
-const { Column, ColumnGroup } = Table;
-
-const { teacherData }: { teacherData: PT.SchoolTeacher[] } = Mock.mock({
-  'teacherData|2': [
-    {
-      'key|+1': 1,
-      'id|+1': 1,
-      'name|+1': ['郑威', '张永泉'],
-      'schoolName|+1': ['哈尔滨理工大学'],
-      'tel|+1': ['13945072055', '18846077959'],
-      'applyDoctorNums|0-5': 1,
-      'applyPostgraduateNums|0-5': 1,
-      'checkDoctorNums|0-5': 1,
-      'checkPostgraduateNums|0-5': 1,
-      'FirstDoctorNums|0-5': 1,
-      'FirstPostgraduateNums|0-5': 1,
-      'secondDoctorNums|0-5': 1,
-      'secondPostgraduateNums|0-5': 1,
-      description: '',
-      state: '未审批',
-    },
-  ],
-});
-
-const { studentData }: { studentData: PT.Student[] } = Mock.mock({
-  'studentData|2': [
-    {
-      'key|+1': 1,
-      'id|+1': 1,
-      'name|+1': ['赵达', '李牧'],
-      'tel|+1': ['13945072050', '13231888738'],
-      'schoolName|+1': ['哈尔滨理工大学'],
-      'schoolTeacher|+1': ['郑威', '张永泉'],
-      'grade|+1': ['二年级', '一年级'],
-      'eduBackground|+1': ['硕士', '博士'],
-      'projectName|+1': ['电动汽车全生命周期分析与环境评价', '金属材料'],
-      'enterpriseTeacher|+1': ['刘强', '张桑'],
-      state: '未审批',
-    },
-  ],
-});
 const Detail = () => {
-  const rowSelection = {
-    onchange: (selectedRowKeys: Key[]) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`);
-    },
-  };
   const tailLayout = {
     wrapperCol: { offset: 1 },
   };
@@ -147,97 +90,6 @@ const Detail = () => {
             <Input.TextArea placeholder="项目简介" disabled={true} />
           </Form.Item>
         </Form>
-      </Card>
-      <Card title="对接导师">
-        <Table
-          dataSource={teacherData}
-          size="middle"
-          rowSelection={{ type: 'checkbox', ...rowSelection }}
-        >
-          <Column title="选择" dataIndex="index" key="index" />
-          <Column title="序号" dataIndex="id" key="id" />
-          <Column title="导师名称" dataIndex="name" key="name" />
-          <Column title="所属高校" dataIndex="schoolName" key="schoolName" />
-          <Column title="联系电话" dataIndex="tel" key="tel" />
-          <ColumnGroup title="高校导师申请对接数">
-            <Column
-              title="博士生"
-              dataIndex="applyDoctorNums"
-              key="applyDoctorNums"
-            />
-            <Column
-              title="硕士生"
-              dataIndex="applyPostgraduateNums"
-              key="applyPostgraduateNums"
-            />
-          </ColumnGroup>
-          <ColumnGroup title="企业确认对接数">
-            <Column
-              title="博士生"
-              dataIndex="checkDoctorNums"
-              key="checkDoctorNums"
-            />
-            <Column
-              title="硕士生"
-              dataIndex="checkPostgraduateNums"
-              key="checkPostgraduateNums"
-            />
-          </ColumnGroup>
-          <ColumnGroup title="第一次分配指标">
-            <Column
-              title="博士生"
-              dataIndex="FirstDoctorNums"
-              key="FirstDoctorNums"
-            />
-            <Column
-              title="硕士生"
-              dataIndex="FirstPostgraduateNums"
-              key="FirstPostgraduateNums"
-            />
-          </ColumnGroup>
-          <Column title="备注" dataIndex="age" key="age" />
-          <ColumnGroup title="第二次分配指标">
-            <Column
-              title="博士生"
-              dataIndex="secondDoctorNums"
-              key="secondDoctorNums"
-            />
-            <Column
-              title="硕士生"
-              dataIndex="secondPostgraduateNums"
-              key="secondPostgraduateNums"
-            />
-          </ColumnGroup>
-          <Column title="备注" dataIndex="description" key="description" />
-          <Column title="高校审批" dataIndex="state" key="state" />
-        </Table>
-      </Card>
-      <Card title="学生管理">
-        <Table
-          dataSource={studentData}
-          size="middle"
-          rowSelection={{ type: 'checkbox', ...rowSelection }}
-        >
-          <Column title="" dataIndex="index" key="index" />
-          <Column title="序号" dataIndex="id" key="id" />
-          <Column title="学生姓名" dataIndex="name" key="name" />
-          <Column title="联系电话" dataIndex="tel" key="tel" />
-          <Column title="所属高校" dataIndex="schoolName" key="schoolName" />
-          <Column
-            title="高校导师"
-            dataIndex="schoolTeacher"
-            key="schoolTeacher"
-          />
-          <Column title="学届" dataIndex="grade" key="grade" />
-          <Column title="学位" dataIndex="eduBackground" key="eduBackground" />
-          <Column title="参与项目" dataIndex="projectName" key="projectName" />
-          <Column
-            title="企业导师"
-            dataIndex="enterpriseTeacher"
-            key="enterpriseTeacher"
-          />
-          <Column title="学生状态" dataIndex="state" key="state" />
-        </Table>
       </Card>
     </>
   );

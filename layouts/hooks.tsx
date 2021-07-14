@@ -25,16 +25,8 @@ const useRoleMenu = (role?: number | null) => {
           new MenuItemGroup(
             '项目对接管理',
             [
-              new MenuItem('/teacher-manager-project', '项目信息管理'),
-              new MenuItem('/teacher-manager-apply-check', '指标审核管理'),
-            ],
-            <ApiOutlined />
-          ),
-          new MenuItemGroup(
-            '教务信息管理',
-            [
-              new MenuItem('/teacher-manager-attendance', '考勤管理'),
-              new MenuItem('/teacher-manager-weekly', '周志管理'),
+              new MenuItem('/teacher-manager-project', '项目信息审核'),
+              new MenuItem('/teacher-manager-apply-check', '项目导师审核'),
             ],
             <ApiOutlined />
           ),
@@ -58,16 +50,6 @@ const useRoleMenu = (role?: number | null) => {
             <ApiOutlined />
           ),
           new MenuItemGroup(
-            '教务信息管理',
-            [
-              new MenuItem('/teacher-weekly', '周志管理'),
-              new MenuItem('/teacher-achievement', '科研成果管理'),
-              new MenuItem('/teacher-apply-award', '奖励申请管理'),
-              new MenuItem('/teacher-abantion', '终止培养管理'),
-            ],
-            <ApiOutlined />
-          ),
-          new MenuItemGroup(
             '信息审批管理',
             [new MenuItem('/teacher-user-check', '用户账号审核')],
             <ApiOutlined />
@@ -80,33 +62,15 @@ const useRoleMenu = (role?: number | null) => {
           new MenuItem('/home', '首页', <HomeOutlined />),
           new MenuItemGroup(
             '项目对接管理',
-            [new MenuItem('/enterprise-manager-project', '项目信息管理')],
-            <ApiOutlined />
-          ),
-          new MenuItemGroup(
-            '教务信息管理',
             [
-              new MenuItem('/enterprise-manager-attendance', '考勤管理'),
-              new MenuItem('/enterprise-manager-weekly', '周志管理'),
-              new MenuItem('/enterprise-manager-achievement', '科研成果管理'),
-              new MenuItem('/enterprise-manager-award', '奖励申请管理'),
-              new MenuItem('/enterprise-manager-abantion', '终止培养管理'),
+              new MenuItem('/enterprise-manager-project', '项目信息管理'),
+              new MenuItem('/enterprise-manage-group-number', '项目成员管理'),
             ],
             <ApiOutlined />
           ),
           new MenuItemGroup(
             '信息审批管理',
             [new MenuItem('/enterprise-manager-user-check', '用户账号审批')],
-            <ApiOutlined />
-          ),
-          new MenuItemGroup(
-            '信息库管理',
-            [
-              new MenuItem('/enterprise-manager-teacher', '示范点导师管理'),
-              new MenuItem('/enterprise-manager-project-library', '项目库管理'),
-              new MenuItem('/enterprise-manager-postgraduate', '研究生管理'),
-            ],
-
             <ApiOutlined />
           ),
         ];

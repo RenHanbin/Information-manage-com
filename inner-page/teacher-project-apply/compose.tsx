@@ -26,7 +26,7 @@ const { dataSource }: { dataSource: PT.Project[] } = Mock.mock({
       createTime: '@date("yyyy")',
       startTime: '@date("yyyy-MM-dd")',
       endTime: '@date("yyyy-MM-dd")',
-      'state|+1': ['未申请', '申请中', '申请通过'],
+      'state|+1': ['未申请', '已通过', '已驳回'],
     },
   ],
 });
