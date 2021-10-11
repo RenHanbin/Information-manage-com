@@ -2,6 +2,14 @@
   width: 300px;
 }
 
+.home-side-head {
+  font-size: 18px;
+  color: #fafafa;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
 .home-content-box {
   width: 100%;
 }
@@ -10,6 +18,4 @@
   margin: 20px;
   background: #fff;
   padding: 20px;
-  max-height: 80vh;
-  overflow-y: scroll;
 }

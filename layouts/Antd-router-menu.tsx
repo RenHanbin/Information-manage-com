@@ -1,21 +1,27 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 
 import { Menu } from 'antd';
 import { v1 as uuid } from 'uuid';
 import Link from 'next/link';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
+import useRoleMenu from 'layouts/hooks';
 import { MenuItem, MenuItemGroup } from 'layouts/Menu';
-export interface Props {
-  menuData: (MenuItem | MenuItemGroup)[];
+
+interface Props {
+  role: number | null;
 }
 
-const AntdRouterMenu = memo((props: Props) => {
-  const { menuData } = props;
+const AntdRouterMenu: React.FC<Props> = memo(({ role }) => {
+  const [menu, { setMenuFromRole }] = useRoleMenu();
+
+  useEffect(() => {
+    setMenuFromRole(role);
+  }, [role]);
 
   return (
-    <Menu theme="light" mode="inline">
-      {menuData.map(menuDataItem => {
+    <Menu theme="dark" mode="inline">
+      {menu.map(menuDataItem => {
         if (menuDataItem instanceof MenuItem) {
           return (
             <Menu.Item key={uuid()} icon={menuDataItem.icon}>

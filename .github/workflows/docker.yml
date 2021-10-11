@@ -1,0 +1,42 @@
+name: docker-ACR-ECS
+on:
+  push:
+    branches: [main]
+jobs:
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Login to ACR
+        uses: aliyun/acr-login@v1
+        with:
+          login-server: https://registry.cn-shanghai.aliyuncs.com
+          username: '${{ secrets.QC_ACR_USERNAME }}'
+          password: '${{ secrets.QC_ACR_PASSWORD }}'
+      - name: Build and push image
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG .
+          docker push registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG
+  ecs-pull:
+    needs: build-docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute SSH commmands on remote server
+        uses: fifsky/ssh-action@master
+        with:
+          user: root
+          host: '${{ secrets.ECS_HOST }}'
+          key: ${{ secrets.ECS_PRIVATE_KEY }}
+          command: |
+            cd /
+            docker login --username=${{ secrets.QC_ACR_USERNAME }} --password=${{ secrets.QC_ACR_PASSWORD }} registry.cn-shanghai.aliyuncs.com
+            docker pull registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:${{ github.sha }}
+            docker container stop $(docker ps --filter="label=service=front-end" --format="{{.ID}}")
+            docker run -p 80:3000 -d registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:${{ github.sha }}
+            docker container prune --force --filter="label=service=front-end"
+            docker image prune --all --force --filter="label=service=front-end"

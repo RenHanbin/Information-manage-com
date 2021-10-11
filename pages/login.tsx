@@ -1,6 +1,0 @@
-/**
- * login
- */
-export default () => {
-  return <></>;
-};

@@ -1,9 +1,11 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import { Avatar, Button, Space } from 'antd';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 
 const UserHeader = () => {
+  const router = useRouter();
   return (
     <div style={{ width: '300px' }}>
       <Space>
@@ -11,13 +13,18 @@ const UserHeader = () => {
           style={{ backgroundColor: '#87d068' }}
           icon={<UserOutlined />}
         />
-        <Button type="text" style={{ color: 'white', fontSize: '14px' }}>
+        <Button type="text" style={{ fontSize: '14px' }}>
           admin
         </Button>
         <Button
           type="text"
           icon={<LogoutOutlined />}
-          style={{ color: 'white', fontSize: '14px' }}
+          style={{ fontSize: '14px' }}
+          onClick={() => {
+            // TODO: 还需清空Storage
+            localStorage.clear();
+            router.push('/');
+          }}
         >
           退出登录
         </Button>

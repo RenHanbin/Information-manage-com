@@ -1,0 +1,90 @@
+.index-box {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(244, 244, 244);
+}
+
+.index-inner-box {
+  display: flex;
+  box-shadow: 0 0 20px #ddd;
+  background: rgba(0, 0, 0, 0);
+}
+
+.left-login-box {
+  position: relative;
+  width: 750px;
+}
+
+.left-register-box {
+  position: relative;
+  width: 500px;
+}
+
+.mask-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
+  width: 100%;
+  height: 100%;
+}
+
+.right-login-box {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 60px 80px;
+}
+
+.right-register-box {
+  width: 750px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 60px 80px;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  padding: 60px 0 60px 0;
+}
+
+.logo-register-box {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.logo-content {
+  font-size: 22px;
+  padding-left: 20px;
+}
+
+.nav {
+  margin: 20px 0;
+}
+
+.unfocus {
+  color: rgb(170, 170, 190);
+}
+
+.focus {
+  font-size: 20px;
+  font-weight: 900;
+  color: #000;
+}
+
+.button {
+  border: 0;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  margin-right: 20px;
+}
